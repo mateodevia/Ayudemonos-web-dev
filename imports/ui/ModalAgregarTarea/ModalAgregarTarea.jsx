@@ -10,7 +10,7 @@ function ModalAgregarTarea(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Agregar Integrante al Grupo
+          Agregar Tarea
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -23,7 +23,7 @@ function ModalAgregarTarea(props) {
       </Modal.Body>
       <Modal.Footer>
         <button className="boton" onClick={props.onHide}>
-          Close
+          Agregar
         </button>
       </Modal.Footer>
     </Modal>

@@ -23,7 +23,7 @@ function ModalAgregarIntegrante(props) {
       </Modal.Body>
       <Modal.Footer>
         <button className="boton" onClick={props.onHide}>
-          Close
+          Agregar
         </button>
       </Modal.Footer>
     </Modal>
