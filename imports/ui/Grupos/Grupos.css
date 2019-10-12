@@ -1,0 +1,28 @@
+.fijo {
+  position: fixed;
+  color: #45dcb8;
+  width: 100%;
+  max-width: inherit;
+}
+
+.listaTitulos {
+  list-style-type: none;
+  padding: 0;
+}
+
+.agregarGrupo {
+  background-color: #323433;
+  color: #45dcb8;
+  padding: 15px;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  max-width: inherit;
+  outline: none;
+}
+
+.agregarGrupo::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #45dcb8;
+  opacity: 1; /* Firefox */
+}

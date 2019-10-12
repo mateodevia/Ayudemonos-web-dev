@@ -1,0 +1,13 @@
+.botonControl {
+  background-color: lightgray;
+  color: #323433;
+  font-size: 16px;
+  border: 1px solid lightgray;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  outline: none !important;
+  margin: 15px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}

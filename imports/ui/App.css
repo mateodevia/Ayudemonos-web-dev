@@ -1,0 +1,52 @@
+.navBarGrupos {
+  background-color: #323433;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.boton {
+  background-color: #45dcb8;
+  color: white;
+  font-size: 16px;
+  border: 1px solid #45dcb8;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  outline: none !important;
+  font-weight: bold;
+}
+
+body {
+  color: #323433;
+}
+
+h1 {
+  margin: 15px;
+  font-size: 30px;
+}
+
+h2 {
+  margin: 15px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+h3 {
+  margin: 15px;
+}
+
+h5 {
+  margin-bottom: 5px;
+}
+
+h6 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+p {
+  margin: 5px;
+  margin-left: 0;
+}
