@@ -14,12 +14,20 @@ function ModalAgregarIntegrante(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <div className="form-group">
+          <label>Escoja los usuarios que desea agregar al grupo</label>
+          <select
+            multiple
+            className="form-control"
+            id="exampleFormControlSelect2"
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <button className="boton" onClick={props.onHide}>
