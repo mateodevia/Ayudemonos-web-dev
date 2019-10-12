@@ -1,5 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import "./ModalAgregarIntegrante.css";
+
 function ModalAgregarIntegrante(props) {
   return (
     <Modal
@@ -9,18 +11,12 @@ function ModalAgregarIntegrante(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Agregar Integrante al Grupo
-        </Modal.Title>
+        <Modal.Title>Agregar Integrante al Grupo</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="form-group">
           <label>Escoja los usuarios que desea agregar al grupo</label>
-          <select
-            multiple
-            className="form-control"
-            id="exampleFormControlSelect2"
-          >
+          <select multiple className="form-control moreHeight">
             <option>1</option>
             <option>2</option>
             <option>3</option>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Navbar.css";
+import AccountsUIWrapper from "../LoginMeteor/AccountsUIWrapper";
 
 class NavBar extends Component {
   constructor(props) {
@@ -8,14 +9,13 @@ class NavBar extends Component {
   }
   render() {
     return (
-      <nav className="navNav">
-        <ul className="ulNav">
-          <button className="hamburger" onClick={this.handleClick}>
-            ☰
-          </button>
-          <h1 className="h1Nav">Ayudémonos!</h1>
-        </ul>
-      </nav>
+      <div className="divNav">
+        <button className="hamburger" onClick={this.handleClick}>
+          ☰
+        </button>
+        <h1 className="h1Nav">Ayudémonos!</h1>
+        <AccountsUIWrapper />
+      </div>
     );
   }
 

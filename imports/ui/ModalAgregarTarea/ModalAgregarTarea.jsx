@@ -41,11 +41,7 @@ function ModalAgregarTarea(props) {
           </div>
           <div className="form-group">
             <label>Escoja los usuarios que son responables de esta tarea</label>
-            <select
-              multiple
-              className="form-control"
-              id="exampleFormControlSelect2"
-            >
+            <select multiple className="form-control">
               <option>1</option>
               <option>2</option>
               <option>3</option>
