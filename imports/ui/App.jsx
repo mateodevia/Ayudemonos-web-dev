@@ -19,20 +19,46 @@ class App extends Component {
     };
   }
 
-  componentDidUpdate() {
-    if (this.state.selected === "") {
-      this.setState({ selected: this.props.grupos[0] });
-    }
-  }
-
   render() {
+    let contenido = null;
+
+    if (this.props.currentUser && this.state.selected !== "") {
+      contenido = (
+        <React.Fragment>
+          <ControlGrupo selectedGroup={this.props.grupos} />
+          <AyudaList />
+          <MisTareas />
+        </React.Fragment>
+      );
+    } else if (this.props.currentUser && this.state.selected === "") {
+      contenido = (
+        <React.Fragment>
+          <div className="mensaje">
+            <h2 className="bienvenido">
+              ¡Bienvenido {this.props.currentUser.username}!
+            </h2>
+            <h3>Escoge o crea un grupo para empezar a ayudar</h3>
+          </div>
+        </React.Fragment>
+      );
+    } else if (!this.props.currentUser) {
+      contenido = (
+        <React.Fragment>
+          <div className="mensaje">
+            <h2 className="bienvenido">¡Bienvenido!</h2>
+            <h3>Por favor inicia sesion para empezar a ayudar</h3>
+          </div>
+        </React.Fragment>
+      );
+    }
+
     return (
       <React.Fragment>
         <div className="container-fluid">
           <div className="row">
             {this.state.menuOpen && (
               <React.Fragment>
-                <div className="col-5 col-sm-3 col-md-3 navBarGrupos noPadding">
+                <div className="col-5 col-sm-3 col-md-3 noPadding">
                   <GruposEscondido
                     selected={this.state.selected}
                     grupos={this.props.grupos}
@@ -41,9 +67,7 @@ class App extends Component {
                 </div>
                 <div className="col-7 col-sm-9 col-md-9 noPadding">
                   <NavBar hamburgerClick={this.hamburgerClick} />
-                  <ControlGrupo selectedGroup={this.props.grupos} />
-                  <AyudaList />
-                  <MisTareas />
+                  {contenido}
                 </div>
               </React.Fragment>
             )}
@@ -51,6 +75,7 @@ class App extends Component {
               <React.Fragment>
                 <div className="col-0 col-sm-3 col-md-3 navBarGrupos noPadding">
                   <Grupos
+                    user={this.props.currentUser}
                     selected={this.state.selected}
                     grupos={this.props.grupos}
                     handleSelected={this.handleSelected}
@@ -58,9 +83,7 @@ class App extends Component {
                 </div>
                 <div className="col-12 col-sm-9 col-md-9 noPadding">
                   <NavBar hamburgerClick={this.hamburgerClick} />
-                  <ControlGrupo selectedGroup={this.state.selected} />
-                  <AyudaList />
-                  <MisTareas />
+                  {contenido}
                 </div>
               </React.Fragment>
             )}
@@ -81,8 +104,9 @@ export default withTracker(() => {
   Meteor.subscribe("tareas");
   Meteor.subscribe("grupos");
   return {
-    tareas: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
+    currentUser: Meteor.user(),
+    // TODO: hacer que solo salgan los grupos del current user
     grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
-    currentUser: Meteor.user()
+    tareas: Tareas.find({}, { sort: { createdAt: -1 } }).fetch()
   };
 })(App);

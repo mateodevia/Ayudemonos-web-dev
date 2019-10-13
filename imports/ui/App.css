@@ -1,5 +1,5 @@
-.navBarGrupos {
-  background-color: #323433;
+.container-fluid {
+  height: 100vh;
 }
 
 .noPadding {
@@ -16,6 +16,15 @@
   padding: 8px 12px;
   outline: none !important;
   font-weight: bold;
+}
+
+.bienvenido {
+  color: #45dcb8;
+  margin-top: 30vh;
+}
+
+.mensaje {
+  text-align: center;
 }
 
 body {
