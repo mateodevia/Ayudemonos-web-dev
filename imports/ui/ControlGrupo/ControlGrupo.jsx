@@ -3,20 +3,29 @@ import "./ControlGrupo.css";
 import ModalAgregarIntegrante from "../ModalAgregarIntegrante/ModalAgregarIntegrante";
 import ModalAgregarTarea from "../ModalAgregarTarea/ModalAgregarTarea";
 
-function ControlGroup() {
+function ControlGroup(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShow2, setModalShow2] = React.useState(false);
   return (
     <React.Fragment>
-      <button className="botonControl" onClick={() => setModalShow(true)}>
+      <button
+        className="botonControl shadow"
+        onClick={() => setModalShow(true)}
+      >
         Agregar Integrate
       </button>
-      <button className="botonControl" onClick={() => setModalShow2(true)}>
+      <button
+        className="botonControl shadow"
+        onClick={() => setModalShow2(true)}
+      >
         Agregar Tarea
       </button>
       <ModalAgregarIntegrante
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={name => {
+          setModalShow(false);
+          Meteor.call("grupos.entrar", props.selectedGroup._id, name);
+        }}
       />
       <ModalAgregarTarea
         show={modalShow2}
@@ -25,5 +34,4 @@ function ControlGroup() {
     </React.Fragment>
   );
 }
-
 export default ControlGroup;

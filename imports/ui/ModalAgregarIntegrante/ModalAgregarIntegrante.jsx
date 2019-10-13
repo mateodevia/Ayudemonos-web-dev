@@ -3,6 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import "./ModalAgregarIntegrante.css";
 
 function ModalAgregarIntegrante(props) {
+  let selectedItem = "";
+
   return (
     <Modal
       {...props}
@@ -16,7 +18,11 @@ function ModalAgregarIntegrante(props) {
       <Modal.Body>
         <div className="form-group">
           <label>Escoja los usuarios que desea agregar al grupo</label>
-          <select multiple className="form-control moreHeight">
+          <select
+            multiple
+            className="form-control moreHeight"
+            onChange={e => (selectedItem = e.target.value)}
+          >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -26,7 +32,7 @@ function ModalAgregarIntegrante(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <button className="boton" onClick={props.onHide}>
+        <button className="boton" onClick={() => props.onHide(selectedItem)}>
           Agregar
         </button>
       </Modal.Footer>

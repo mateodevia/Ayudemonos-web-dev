@@ -9,7 +9,7 @@ class NavBar extends Component {
   }
   render() {
     return (
-      <div className="divNav">
+      <div className="divNav shadow">
         <button className="hamburger" onClick={this.handleClick}>
           ☰
         </button>

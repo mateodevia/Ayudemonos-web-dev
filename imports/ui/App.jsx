@@ -6,28 +6,25 @@ import GruposEscondido from "./Grupos/GruposEscondido";
 import NavBar from "./NavBar/NavBar";
 import ControlGrupo from "./ControlGrupo/ControlGrupo";
 import "./App.css";
-import { Tareas } from '../api/tareas.js';
-import { GruposBack } from '../api/grupos.js';
-import { withTracker } from 'meteor/react-meteor-data';
+import { Tareas } from "../api/tareas.js";
+import { GruposBack } from "../api/grupos.js";
+import { withTracker } from "meteor/react-meteor-data";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       menuOpen: false,
-      selected: "Web",
-      grupos: [
-        {
-          id: 1,
-          nombre: "Moviles"
-        },
-        {
-          id: 2,
-          nombre: "Web"
-        }
-      ]
+      selected: ""
     };
   }
+
+  componentDidUpdate() {
+    if (this.props.grupos[0] !== this.state.selected) {
+      this.setState({ selected: this.props.grupos[0] });
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -44,7 +41,7 @@ class App extends Component {
                 </div>
                 <div className="col-7 col-sm-9 col-md-9 noPadding">
                   <NavBar hamburgerClick={this.hamburgerClick} />
-                  <ControlGrupo />
+                  <ControlGrupo selectedGroup={this.props.grupos} />
                   <AyudaList />
                   <MisTareas />
                 </div>
@@ -61,7 +58,7 @@ class App extends Component {
                 </div>
                 <div className="col-12 col-sm-9 col-md-9 noPadding">
                   <NavBar hamburgerClick={this.hamburgerClick} />
-                  <ControlGrupo />
+                  <ControlGrupo selectedGroup={this.state.selected} />
                   <AyudaList />
                   <MisTareas />
                 </div>
@@ -81,13 +78,11 @@ class App extends Component {
   };
 }
 export default withTracker(() => {
-  Meteor.subscribe('tareas');
-  Meteor.subscribe('grupos');
+  Meteor.subscribe("tareas");
+  Meteor.subscribe("grupos");
   return {
     tareas: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
     grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
-    currentUser: Meteor.user(),
+    currentUser: Meteor.user()
   };
-
 })(App);
-
