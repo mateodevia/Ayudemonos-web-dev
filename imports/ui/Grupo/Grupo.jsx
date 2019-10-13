@@ -15,7 +15,7 @@ class Grupo extends Component {
       );
     } else {
       return (
-        <li onClick={() => this.props.handleSelected(this.props.grupo.nombre)}>
+        <li onClick={() => this.props.handleSelected(this.props.grupo)}>
           <h5 className="tituloGrupo">{this.props.grupo.nombre}</h5>
         </li>
       );

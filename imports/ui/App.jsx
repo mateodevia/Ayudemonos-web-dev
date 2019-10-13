@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.grupos[0] !== this.state.selected) {
+    if (this.state.selected === "") {
       this.setState({ selected: this.props.grupos[0] });
     }
   }
@@ -73,8 +73,8 @@ class App extends Component {
   hamburgerClick = () => {
     this.setState({ menuOpen: !this.state.menuOpen });
   };
-  handleSelected = nombre => {
-    this.setState({ selected: nombre });
+  handleSelected = grupo => {
+    this.setState({ selected: grupo });
   };
 }
 export default withTracker(() => {
