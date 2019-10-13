@@ -29,6 +29,8 @@ function ControlGroup(props) {
       />
       <ModalAgregarTarea
         show={modalShow2}
+        selectedGroup={props.selectedGroup}
+        grupos={props.grupos}
         onHide={() => setModalShow2(false)}
       />
     </React.Fragment>

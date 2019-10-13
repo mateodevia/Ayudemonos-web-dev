@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TareaPropia from "../Tareas/TareaPropia";
-import { Meteor } from 'meteor/meteor';
-
+import { Meteor } from "meteor/meteor";
 
 class MisTareasList extends Component {
   constructor(props) {

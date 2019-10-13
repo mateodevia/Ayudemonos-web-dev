@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Grupo from "../Grupo/Grupo";
 import "./GruposPantallaGrande.css";
 import "./Grupos.css";
-import { GruposBack } from '../../api/grupos.js';
-
+import { GruposBack } from "../../api/grupos.js";
 
 class Grupos extends Component {
   constructor(props) {
@@ -36,12 +35,9 @@ class Grupos extends Component {
     );
   }
   handleSubmit(event) {
-    console.log("hola")
     event.preventDefault();
-    console.log(this.nuevoGrupo.value);
-    Meteor.call('grupos.crear', this.nuevoGrupo.value);
+    Meteor.call("grupos.crear", this.nuevoGrupo.value);
     this.nuevoGrupo.value = "";
   }
 }
-
 export default Grupos;

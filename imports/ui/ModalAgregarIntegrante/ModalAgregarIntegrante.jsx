@@ -3,8 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import "./ModalAgregarIntegrante.css";
 
 function ModalAgregarIntegrante(props) {
-  let selectedItem = "";
-
   return (
     <Modal
       {...props}

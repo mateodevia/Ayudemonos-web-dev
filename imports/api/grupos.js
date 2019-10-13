@@ -10,11 +10,12 @@ if (Meteor.isServer) {
   });
 }
 Meteor.methods({
-  "grupos.crear": nameP => {
+  // TODO: Hacer un metodo que busque un grupo por nombre, creador, usuarios, invitados
+  "grupos.crear": (nameP, usuario) => {
     GruposBack.insert({
       nombre: nameP,
-      creador: this.userId,
-      usuarios: [this.userId],
+      creador: usuario,
+      usuarios: [usuario],
       invitados: []
     });
   },

@@ -1,6 +1,8 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 function ModalAgregarTarea(props) {
+  let usuarios = props.selectedGroup.usuarios;
+  let i = 0;
   return (
     <Modal
       {...props}
@@ -42,11 +44,10 @@ function ModalAgregarTarea(props) {
           <div className="form-group">
             <label>Escoja los usuarios que son responables de esta tarea</label>
             <select multiple className="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              {usuarios.map(usuario => {
+                i = i + 1;
+                return <option key={i}>{usuario}</option>;
+              })}
             </select>
           </div>
         </form>
