@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import TareaPropia from "../Tareas/TareaPropia";
+import { withTracker } from 'meteor/react-meteor-data';
+import { Tareas } from '../../api/tareas.js';
+import { Meteor } from 'meteor/meteor';
+
 
 class MisTareasList extends Component {
   constructor(props) {
@@ -54,5 +58,10 @@ class MisTareasList extends Component {
     );
   }
 }
+export default withTracker(() => {
+  Meteor.subscribe('tareas');
+  return {
+    tareas: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
 
-export default MisTareasList;
+  };
+})(MisTareasList);
