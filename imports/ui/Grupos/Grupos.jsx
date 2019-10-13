@@ -17,7 +17,7 @@ class Grupos extends Component {
         <ul className="listaTitulos">
           {this.props.grupos.map(grupo => (
             <Grupo
-              key={grupo.id}
+              key={grupo._id}
               grupo={grupo}
               selected={this.props.selected}
               handleSelected={this.props.handleSelected}
@@ -36,6 +36,7 @@ class Grupos extends Component {
     );
   }
   handleSubmit(event) {
+    console.log("hola")
     event.preventDefault();
     console.log(this.nuevoGrupo.value);
     Meteor.call('grupos.crear', this.nuevoGrupo.value);

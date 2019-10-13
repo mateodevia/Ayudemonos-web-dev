@@ -6,6 +6,9 @@ import GruposEscondido from "./Grupos/GruposEscondido";
 import NavBar from "./NavBar/NavBar";
 import ControlGrupo from "./ControlGrupo/ControlGrupo";
 import "./App.css";
+import { Tareas } from '../api/tareas.js';
+import { GruposBack } from '../api/grupos.js';
+import { withTracker } from 'meteor/react-meteor-data';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +38,7 @@ class App extends Component {
                 <div className="col-5 col-sm-3 col-md-3 navBarGrupos noPadding">
                   <GruposEscondido
                     selected={this.state.selected}
-                    grupos={this.state.grupos}
+                    grupos={this.props.grupos}
                     handleSelected={this.handleSelected}
                   />
                 </div>
@@ -52,7 +55,7 @@ class App extends Component {
                 <div className="col-0 col-sm-3 col-md-3 navBarGrupos noPadding">
                   <Grupos
                     selected={this.state.selected}
-                    grupos={this.state.grupos}
+                    grupos={this.props.grupos}
                     handleSelected={this.handleSelected}
                   />
                 </div>
@@ -77,5 +80,14 @@ class App extends Component {
     this.setState({ selected: nombre });
   };
 }
+export default withTracker(() => {
+  Meteor.subscribe('tareas');
+  Meteor.subscribe('grupos');
+  return {
+    tareas: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
+    grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
+    currentUser: Meteor.user(),
+  };
 
-export default App;
+})(App);
+

@@ -13,8 +13,18 @@ if(Meteor.isServer){
 
 }
 
+if(Meteor.isServer){
+    Meteor.publish('tareasPropias',()=>{
+        return Tareas.find({
+           
+        });
+    });
+}
+
+
+
 Meteor.methods({
-    'tareas.insert':(description,groupId,dueDate)=>{
+    'tareas.insert':(nombreP,descriptionP,groupId,dueDate,[usuarios])=>{
 
 
         const gruposUsuario=Meteor.users.findOne(this.userId).grupos;
@@ -34,9 +44,10 @@ Meteor.methods({
             /*2 DIAS ANTES DEL DUE DATE SE SUELTAN.DEBERIA DEPENDER DEL TIPO DE PROYRECTO */
     
         Tareas.insert({
-            description,
+            nombre:nombreP,
+            description:descriptionP,
             fechaCreacion:new Date(),
-            currentOwners:[],
+            currentOwners:[usuarios],
             creator: this.userId,
             porcentageDone: 0,
             hasTraspased: false,
@@ -63,8 +74,4 @@ Meteor.methods({
         
     Tareas.update({ "_id" : taskId }, { $set:{porcentageDone: porcent } });
     }
-
-    
-
-
 });

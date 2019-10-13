@@ -13,8 +13,9 @@ if(Meteor.isServer){
 
 }
 Meteor.methods({
-    'grupos.crear':()=>{
+    'grupos.crear':(nameP)=>{
         GruposBack.insert({
+            nombre: nameP,
             creador:this.userId,
             usuarios:[this.userId],
             invitados:[]
