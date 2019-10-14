@@ -15,25 +15,25 @@ class App extends Component {
     super(props);
     this.state = {
       menuOpen: false,
-      selected: ""
+      selected: -1
     };
   }
 
   render() {
     let contenido = null;
 
-    if (this.props.currentUser && this.state.selected !== "") {
+    if (this.props.currentUser && this.state.selected !== -1) {
       contenido = (
         <React.Fragment>
           <ControlGrupo
-            selectedGroup={this.state.selected}
+            selectedGroup={this.props.grupos[this.state.selected]}
             usuarios={this.props.usuarios}
           />
           <AyudaList tareasAyuda={this.props.tareas} />
           <MisTareas tareasPropias={this.props.tareas} />
         </React.Fragment>
       );
-    } else if (this.props.currentUser && this.state.selected === "") {
+    } else if (this.props.currentUser && this.state.selected === -1) {
       contenido = (
         <React.Fragment>
           <div className="mensaje">
@@ -63,7 +63,7 @@ class App extends Component {
               <React.Fragment>
                 <div className="col-5 col-sm-3 col-md-3 noPadding">
                   <GruposEscondido
-                    selected={this.state.selected}
+                    selected={this.props.grupos[this.state.selected]}
                     grupos={this.props.grupos}
                     handleSelected={this.handleSelected}
                   />
@@ -79,7 +79,7 @@ class App extends Component {
                 <div className="col-0 col-sm-3 col-md-3 navBarGrupos noPadding">
                   <Grupos
                     user={this.props.currentUser}
-                    selected={this.state.selected}
+                    selected={this.props.grupos[this.state.selected]}
                     grupos={this.props.grupos}
                     handleSelected={this.handleSelected}
                   />
@@ -100,7 +100,8 @@ class App extends Component {
     this.setState({ menuOpen: !this.state.menuOpen });
   };
   handleSelected = grupo => {
-    this.setState({ selected: grupo });
+    let newSelected = this.props.grupos.findIndex(x => x._id === grupo._id);
+    this.setState({ selected: newSelected });
   };
 }
 export default withTracker(() => {

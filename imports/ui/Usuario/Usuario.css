@@ -1,0 +1,14 @@
+.formaUsuario {
+  background-color: #45dcb8;
+  width: 100px;
+  height: 40px;
+  margin: 15px;
+  line-height: 40px;
+}
+
+.iconoUsuario {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  vertical-align: middle;
+}
