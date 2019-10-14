@@ -29,8 +29,14 @@ class App extends Component {
             selectedGroup={this.props.grupos[this.state.selected]}
             usuarios={this.props.usuarios}
           />
-          <AyudaList tareasAyuda={this.props.tareas} />
-          <MisTareas tareasPropias={this.props.tareas} />
+          <AyudaList tareasAyuda="" />
+          <MisTareas
+            tareasPropias={this.props.tareasPropias.filter(tarea => {
+              return (
+                tarea.grupoId === this.props.grupos[this.state.selected]._id
+              );
+            })}
+          />
         </React.Fragment>
       );
     } else if (this.props.currentUser && this.state.selected === -1) {

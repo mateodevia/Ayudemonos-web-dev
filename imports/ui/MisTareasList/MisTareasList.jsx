@@ -47,8 +47,8 @@ class MisTareasList extends Component {
       <React.Fragment>
         <h2>Mis Tareas</h2>
         <ul className="noPadding">
-          {this.state.tareas.map(tarea => (
-            <TareaPropia key={tarea.id} tarea={tarea} />
+          {this.props.tareasPropias.map(tarea => (
+            <TareaPropia key={tarea._id} tarea={tarea} />
           ))}
         </ul>
       </React.Fragment>

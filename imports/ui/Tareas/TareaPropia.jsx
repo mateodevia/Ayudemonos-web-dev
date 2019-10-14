@@ -14,7 +14,7 @@ class TareaPropia extends Component {
         <div className="card-body">
           <h5>{this.props.tarea.nombre}</h5>
           <div className="responsables">
-            {this.props.tarea.responsables.map((responsable, index) => (
+            {this.props.tarea.currentOwners.map((responsable, index) => (
               <span key={index}>{(index ? ", " : "") + responsable}</span>
             ))}
           </div>
