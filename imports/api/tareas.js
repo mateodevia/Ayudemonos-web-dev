@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
-
+import { GruposBack} from "./grupos"
 export const Tareas = new Mongo.Collection("tareas");
 
 if (Meteor.isServer) {
@@ -18,16 +18,25 @@ if (Meteor.isServer) {
   });
 }
 
-if (Meteor.isServer) {
-    Meteor.publish("tareasPropias", () => {
-      return Tareas.find({currentOwners: Meteor.user.userId });
-    });
-  }
-  
+
 
   if (Meteor.isServer) {
-    Meteor.publish("tareasP", () => {
-      return Tareas.find({currentOwners: Meteor.user.userId });
+    Meteor.publish("tareasAyuda", () => {
+
+       // db.scores.find(  { results: { $elemMatch: { $gte: 80, $lt: 85 } } } )
+      var groupsIbelong= GruposBack.find({usuarios:Meteor.user.userId}, { sort: { createdAt: -1 } }).fetch()
+
+        for (group in groupsIbelong){
+
+                var resp=[];
+                resp.push(Tareas.find({
+                    $and:[{delayed},{groupId:group}] 
+                }))
+                resp.push(Tareas.find({groupId:group }));
+
+        }
+        return resp;
+
     });
   }
 Meteor.methods({
