@@ -52,7 +52,6 @@ Meteor.methods({
   }*/
   },
   "tareas.marcarPorcentaje": (taskId, porcent) => {
-    console.log(taskId, porc);
     Tareas.update({ _id: taskId }, { $set: { porcentageDone: porcent } });
   }
 });
