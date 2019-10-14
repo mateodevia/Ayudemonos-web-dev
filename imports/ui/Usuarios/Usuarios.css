@@ -1,0 +1,32 @@
+.contenedorUsuarios {
+  margin: 15px;
+  margin-bottom: 0;
+}
+
+.formaUsuario {
+  background-color: #45dcb979;
+  width: max-content;
+  height: 40px;
+  margin: 5px;
+  margin-left: 0;
+  margin-right: 10px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+}
+
+.iconoUsuario {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  background: white;
+  border-radius: 15px;
+}
+
+.nombre {
+  color: #323433;
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+}
