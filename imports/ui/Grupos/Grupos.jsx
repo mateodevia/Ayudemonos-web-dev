@@ -36,7 +36,7 @@ class Grupos extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    Meteor.call("grupos.crear", this.nuevoGrupo.value);
+    Meteor.call("grupos.crear", this.nuevoGrupo.value, Meteor.user().username);
     this.nuevoGrupo.value = "";
   }
 }

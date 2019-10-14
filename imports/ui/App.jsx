@@ -25,7 +25,10 @@ class App extends Component {
     if (this.props.currentUser && this.state.selected !== "") {
       contenido = (
         <React.Fragment>
-          <ControlGrupo selectedGroup={this.state.selected} />
+          <ControlGrupo
+            selectedGroup={this.state.selected}
+            usuarios={this.props.usuarios}
+          />
           <AyudaList tareasAyuda={this.props.tareas} />
           <MisTareas tareasPropias={this.props.tareas} />
         </React.Fragment>
@@ -103,8 +106,10 @@ class App extends Component {
 export default withTracker(() => {
   Meteor.subscribe("tareas");
   Meteor.subscribe("grupos");
+  Meteor.subscribe("users");
   return {
     currentUser: Meteor.user(),
+    usuarios: Meteor.users.find({}).fetch(),
     // TODO: hacer que solo salgan los grupos del current user
     grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
     // TODO: fltrar estas dos listas

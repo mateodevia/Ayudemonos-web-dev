@@ -8,6 +8,9 @@ if (Meteor.isServer) {
   Meteor.publish("grupos", () => {
     return GruposBack.find({});
   });
+  Meteor.publish("users", () => {
+    return Meteor.users.find({});
+  });
 }
 Meteor.methods({
   // TODO: Hacer un metodo que busque un grupo por nombre, creador, usuarios, invitados

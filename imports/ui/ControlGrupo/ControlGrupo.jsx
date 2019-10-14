@@ -8,16 +8,10 @@ function ControlGroup(props) {
   const [modalShow2, setModalShow2] = React.useState(false);
   return (
     <React.Fragment>
-      <button
-        className="botonControl shadow"
-        onClick={() => setModalShow(true)}
-      >
+      <button className="botonControl" onClick={() => setModalShow(true)}>
         Agregar Integrate
       </button>
-      <button
-        className="botonControl shadow"
-        onClick={() => setModalShow2(true)}
-      >
+      <button className="botonControl" onClick={() => setModalShow2(true)}>
         Agregar Tarea
       </button>
       <ModalAgregarIntegrante
@@ -26,6 +20,7 @@ function ControlGroup(props) {
           setModalShow(false);
           Meteor.call("grupos.entrar", props.selectedGroup._id, name);
         }}
+        usuarios={props.usuarios}
       />
       <ModalAgregarTarea
         show={modalShow2}

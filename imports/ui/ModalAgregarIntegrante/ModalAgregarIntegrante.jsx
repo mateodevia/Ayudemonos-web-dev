@@ -3,6 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import "./ModalAgregarIntegrante.css";
 
 function ModalAgregarIntegrante(props) {
+  let usuarios = props.usuarios;
+  let i = 0;
   return (
     <Modal
       {...props}
@@ -21,11 +23,10 @@ function ModalAgregarIntegrante(props) {
             className="form-control moreHeight"
             onChange={e => (selectedItem = e.target.value)}
           >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            {usuarios.map(usuario => {
+              i = i + 1;
+              return <option key={i}>{usuario.username}</option>;
+            })}
           </select>
         </div>
       </Modal.Body>
