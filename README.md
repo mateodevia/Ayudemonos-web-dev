@@ -57,7 +57,7 @@ curl https://install.meteor.com/ | sh
 meteor
 ```
 
-5)open in the browser the 
+5)open in the browser the project 
 
 ```
 localhost:3001
@@ -73,41 +73,17 @@ https://ayudemonos.herokuapp.com
 https://docs.google.com/presentation/d/1FCj0bL5pGtBVA1nlT-IolltvebHxxvrXkpUlRvJnMdw/edit#slide=id.g60b2072c3e_0_22
 
 **Autores** 
-  Leonel Francisco Naranjo Forero 
-  
-  github.com/lfnaranjo11
+
+ * [__Leonel Francisco Naranjo Forero __](https://github.com/lfnaranjo11)
+
 
   Mateo Devia Vega
+  * [__Mateo Devia__](https://github.com/mateodevia)
 
-  github.com/mateodevia
+  
 
- 
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
- 
- 
-
-
- 
-
- **licencia MIT.**
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*allows*
-
-Commercial use
- Modification
- Distribution
- Private use
-
-*desventajas*
-
-Liability
- Warranty
+This repository has the standard MIT license. You can find it [here.](https://github.com/mateodevia/datosGovViewer/blob/master/LICENSE)
 
