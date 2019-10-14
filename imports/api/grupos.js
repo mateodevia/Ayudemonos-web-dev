@@ -12,6 +12,9 @@ if (Meteor.isServer) {
     return Meteor.users.find({});
   });
 }
+
+ //db.inventory.find( { tags: "red" } )
+
 Meteor.methods({
   // TODO: Hacer un metodo que busque un grupo por nombre, creador, usuarios, invitados
   "grupos.crear": (nameP, usuario) => {

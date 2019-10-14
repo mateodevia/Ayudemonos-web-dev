@@ -107,6 +107,8 @@ class App extends Component {
 export default withTracker(() => {
   Meteor.subscribe("tareas");
   Meteor.subscribe("grupos");
+  Meteor.subscribe("tareasPropias");
+
   Meteor.subscribe("users");
   return {
     currentUser: Meteor.user(),

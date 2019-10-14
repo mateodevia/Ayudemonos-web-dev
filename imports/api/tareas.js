@@ -9,12 +9,27 @@ if (Meteor.isServer) {
   });
 }
 
+//db.inventory.find( { tags: "red" } )
+
+
 if (Meteor.isServer) {
   Meteor.publish("tareasPropias", () => {
-    return Tareas.find({});
+    return Tareas.find({currentOwners: Meteor.user.userId });
   });
 }
 
+if (Meteor.isServer) {
+    Meteor.publish("tareasPropias", () => {
+      return Tareas.find({currentOwners: Meteor.user.userId });
+    });
+  }
+  
+
+  if (Meteor.isServer) {
+    Meteor.publish("tareasP", () => {
+      return Tareas.find({currentOwners: Meteor.user.userId });
+    });
+  }
 Meteor.methods({
   "tareas.insert": (nombreP, descriptionP, groupId, dueDateP, usuarios) => {
     Tareas.insert({
@@ -22,7 +37,7 @@ Meteor.methods({
       description: descriptionP,
       fechaCreacion: new Date(),
       currentOwners: usuarios,
-      creator: this.userId,
+      creator: Meteor.user.userId,
       porcentageDone: 0,
       hasTraspased: false,
       delayed: false,
