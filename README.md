@@ -11,11 +11,11 @@ A public collaborative page for team work
 
 **project objectives**
 
-Create a  collaborative to-do list that allows to ask for help when needed in a chore, and that also recognize when the progress in a chore is so low that it needs to be reassigned to someone more commited
+* Create a  collaborative to-do list that allows to ask for help when needed in a chore, and that also recognize when the progress in a chore is so low that it needs to be reassigned to someone more commited
 
-Make the access to the to-dos private so only members of a group can see it
+* Make the access to the to-dos private so only members of a group can see it
 
-Allow users to add their friends into a group they are part of and/or have created
+* Allow users to add their friends into a group they are part of and/or have created
 
 
 **Used  technologies**
