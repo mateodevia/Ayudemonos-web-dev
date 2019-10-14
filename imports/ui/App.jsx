@@ -86,7 +86,16 @@ class App extends Component {
                 <div className="col-5 col-sm-3 col-md-3 noPadding">
                   <GruposEscondido
                     selected={this.props.grupos[this.state.selected]}
-                    grupos={this.props.grupos}
+                    grupos={this.props.grupos.filter((grupo)=>{
+                      let encontrado =false;
+                      for (i in grupo.usuarios){
+                        if(grupo.usuarios[i]===Meteor.user().username)
+                        {
+                          encontrado = true;  
+                        }
+                      }
+                      return encontrado;
+                    })}
                     handleSelected={this.handleSelected}
                   />
                 </div>
@@ -102,7 +111,16 @@ class App extends Component {
                   <Grupos
                     user={this.props.currentUser}
                     selected={this.props.grupos[this.state.selected]}
-                    grupos={this.props.grupos}
+                    grupos={this.props.grupos.filter((grupo)=>{
+                      let encontrado =false;
+                      for (let i=0;i< grupo.usuarios.length;i++){
+                        if(grupo.usuarios[i]===Meteor.user().username)
+                        {
+                          encontrado = true;  
+                        }
+                      }
+                      return encontrado;
+                    })}
                     handleSelected={this.handleSelected}
                   />
                 </div>

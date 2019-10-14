@@ -5,8 +5,18 @@ import { check } from "meteor/check";
 export const GruposBack = new Mongo.Collection("grupos");
 
 if (Meteor.isServer) {
+  
   Meteor.publish("grupos", () => {
-    return GruposBack.find({});
+
+    if(Meteor.user()){
+    
+      return GruposBack.find({});
+
+    }
+    else{
+      return [];
+    }
+    
   });
   Meteor.publish("users", () => {
     return Meteor.users.find({});
@@ -25,11 +35,28 @@ Meteor.methods({
     });
   },
   "grupos.invitar": (grupoId, invitados) => {
+
+
     for (i in invitados) {
+      console.log(invitados[i])
+    let grupoActual = GruposBack.findOne({_id: grupoId});
+    let existe=false;
+    console.log("grupoACTUAL",grupoActual)
+
+    for(j in grupoActual.usuarios){
+      console.log(grupoActual.usuarios[j],invitados[i])
+      if(grupoActual.usuarios[j] === invitados[i] ){
+        
+        existe=true;
+      }
+    }
+    if(!existe){
       GruposBack.update(
-        { _id: grupoId },
-        { $push: { usuarios: invitados[i] } }
+      { _id: grupoId },
+      { $push: { usuarios: invitados[i] } }
       );
+    }
+     
     }
   },
   "grupos.entrar": (grupoId, nombre) => {
