@@ -57,7 +57,7 @@ curl https://install.meteor.com/ | sh
 meteor
 ```
 
-6)open in the browser the project 
+6) open in the browser the project 
 
 ```
 localhost:3001
