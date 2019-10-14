@@ -18,12 +18,16 @@ Meteor.methods({
     GruposBack.insert({
       nombre: nameP,
       creador: usuario,
-      usuarios: [usuario],
-      invitados: []
+      usuarios: [usuario]
     });
   },
-  "grupos.invitar": (grupoId, invitadoId) => {
-    GruposBack.update({ _id: grupoId }, { $push: { invitados: invitadoId } });
+  "grupos.invitar": (grupoId, invitados) => {
+    for (i in invitados) {
+      GruposBack.update(
+        { _id: grupoId },
+        { $push: { usuarios: invitados[i] } }
+      );
+    }
   },
   "grupos.entrar": (grupoId, nombre) => {
     //const usuarios = GruposBack.findOne({ nombre: nombreGrupo }).usuarios;

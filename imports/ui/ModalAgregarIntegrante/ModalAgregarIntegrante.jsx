@@ -3,8 +3,22 @@ import Modal from "react-bootstrap/Modal";
 import "./ModalAgregarIntegrante.css";
 
 function ModalAgregarIntegrante(props) {
+  let selectedItems = "";
   let usuarios = props.usuarios;
   let i = 0;
+
+  let agregarIntegrante = function() {
+    usuarios = [];
+    for (let i = 0; i < selectedItems.length; i++) {
+      if (selectedItems[i].selected) {
+        usuarios.push(selectedItems[i].value);
+      }
+    }
+
+    Meteor.call("grupos.invitar", props.selectedGroup._id, usuarios);
+    props.onHide();
+  };
+
   return (
     <Modal
       {...props}
@@ -21,7 +35,7 @@ function ModalAgregarIntegrante(props) {
           <select
             multiple
             className="form-control moreHeight"
-            onChange={e => (selectedItem = e.target.value)}
+            onChange={e => (selectedItems = e.target.options)}
           >
             {usuarios.map(usuario => {
               i = i + 1;
@@ -31,7 +45,7 @@ function ModalAgregarIntegrante(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <button className="boton" onClick={() => props.onHide(selectedItem)}>
+        <button className="boton" onClick={agregarIntegrante}>
           Agregar
         </button>
       </Modal.Footer>

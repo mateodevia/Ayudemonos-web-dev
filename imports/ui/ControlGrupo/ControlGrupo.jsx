@@ -16,10 +16,8 @@ function ControlGroup(props) {
       </button>
       <ModalAgregarIntegrante
         show={modalShow}
-        onHide={name => {
-          setModalShow(false);
-          Meteor.call("grupos.entrar", props.selectedGroup._id, name);
-        }}
+        selectedGroup={props.selectedGroup}
+        onHide={() => setModalShow(false)}
         usuarios={props.usuarios}
       />
       <ModalAgregarTarea

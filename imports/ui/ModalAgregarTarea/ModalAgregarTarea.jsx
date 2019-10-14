@@ -3,6 +3,40 @@ import Modal from "react-bootstrap/Modal";
 function ModalAgregarTarea(props) {
   let usuarios = props.selectedGroup.usuarios;
   let i = 0;
+  let nombre = "";
+  let descripcion = "";
+  let fecha = "";
+  let selectedItems = "";
+
+  let agregarTarea = function() {
+    usuarios = [];
+    for (let i = 0; i < selectedItems.length; i++) {
+      if (selectedItems[i].selected) {
+        usuarios.push(selectedItems[i].value);
+      }
+    }
+
+    let partes = fecha.split("/");
+    if (partes.length !== 3) {
+      alert("La fecha ingresada no es valida");
+      return;
+    }
+    let dia = partes[0];
+    let mes = partes[1];
+    let año = partes[2];
+    let date = new Date(parseInt(año), parseInt(mes), parseInt(dia));
+
+    Meteor.call(
+      "tareas.insert",
+      nombre,
+      descripcion,
+      props.selectedGroup._id,
+      date,
+      usuarios
+    );
+    props.onHide();
+  };
+
   return (
     <Modal
       {...props}
@@ -23,6 +57,7 @@ function ModalAgregarTarea(props) {
               type="text"
               className="form-control"
               placeholder="Escriba el nombre de la tarea"
+              onChange={e => (nombre = e.target.value)}
             ></input>
           </div>
           <div className="form-group">
@@ -31,6 +66,7 @@ function ModalAgregarTarea(props) {
               className="form-control"
               rows="3"
               placeholder="Escriba en que consiste la tarea"
+              onChange={e => (descripcion = e.target.value)}
             ></textarea>
           </div>
           <div className="form-group">
@@ -38,12 +74,17 @@ function ModalAgregarTarea(props) {
             <input
               type="text"
               className="form-control"
-              placeholder="dd/mm/aa"
+              placeholder="dd/mm/aaaa"
+              onChange={e => (fecha = e.target.value)}
             ></input>
           </div>
           <div className="form-group">
             <label>Escoja los usuarios que son responables de esta tarea</label>
-            <select multiple className="form-control">
+            <select
+              multiple
+              className="form-control"
+              onChange={e => (selectedItems = e.target.options)}
+            >
               {usuarios.map(usuario => {
                 i = i + 1;
                 return <option key={i}>{usuario}</option>;
@@ -53,7 +94,7 @@ function ModalAgregarTarea(props) {
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <button className="boton" onClick={props.onHide}>
+        <button className="boton" onClick={agregarTarea}>
           Agregar
         </button>
       </Modal.Footer>
