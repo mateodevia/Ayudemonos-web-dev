@@ -34,7 +34,7 @@ class AyudaList extends Component {
       <React.Fragment>
         <h2>Tareas que necesitan ayuda</h2>
         <ul className="noPadding">
-          {this.state.tareas.map(tarea => (
+          {this.props.tareasAyuda.map(tarea => (
             <TareaAyuda key={tarea.id} tarea={tarea} />
           ))}
         </ul>

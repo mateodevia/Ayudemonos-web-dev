@@ -8,7 +8,22 @@ class TareaPropia extends Component {
       porcentaje: 0
     };
   }
+
+  componentDidMount() {
+    this.prog.addEventListener("change", () => this.updateProgress());
+  }
+
+  updateProgress() {
+    Meteor.call(
+      "tareas.marcarPorcentaje",
+      this.props.tarea._id,
+      this.state.porcentaje
+    );
+  }
+
   render() {
+    let partes = this.props.tarea.dueDate.toString().split(" ");
+    let fecha = partes[1] + " " + partes[2] + " " + partes[3];
     return (
       <div className="card tareaCard shadow-lg">
         <div className="card-body">
@@ -35,7 +50,7 @@ class TareaPropia extends Component {
             <h6>Descripción</h6>
             <p className="card-text">{this.props.tarea.descripcion}</p>
             <h6>Fecha Limite</h6>
-            <p className="card-text">{this.props.tarea.fechaFin}</p>
+            <p className="card-text">{fecha}</p>
             <h6>Progreso {this.state.porcentaje}%</h6>
             <input
               className="sliderProgreso"
@@ -44,6 +59,11 @@ class TareaPropia extends Component {
               ref={prog => (this.prog = prog)}
               onChange={this.handleChange.bind(this)}
             />
+            <div className="botonAyuda">
+              <button className="boton m-1" onClick={() => this.pedirAyuda}>
+                Pedir Ayuda
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -51,6 +71,9 @@ class TareaPropia extends Component {
   }
   handleChange() {
     this.setState({ porcentaje: this.prog.value });
+  }
+  pedorAyuda() {
+    //Meteor Call
   }
 }
 

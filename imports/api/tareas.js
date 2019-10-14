@@ -9,27 +9,6 @@ if (Meteor.isServer) {
   });
 }
 
-//db.inventory.find( { tags: "red" } )
-
-
-if (Meteor.isServer) {
-  Meteor.publish("tareasPropias", () => {
-    return Tareas.find({currentOwners: Meteor.user.userId });
-  });
-}
-
-if (Meteor.isServer) {
-    Meteor.publish("tareasPropias", () => {
-      return Tareas.find({currentOwners: Meteor.user.userId });
-    });
-  }
-  
-
-  if (Meteor.isServer) {
-    Meteor.publish("tareasP", () => {
-      return Tareas.find({currentOwners: Meteor.user.userId });
-    });
-  }
 Meteor.methods({
   "tareas.insert": (nombreP, descriptionP, groupId, dueDateP, usuarios) => {
     Tareas.insert({
@@ -54,8 +33,26 @@ Meteor.methods({
   },
   "tareas.pedirAyuda": taskId => {
     Tareas.update({ _id: taskId }, { $set: { delayed: true } });
+    /*  if (Meteor.isServer) {
+    Meteor.publish("tareasAyuda", () => {
+
+      var groupsIbelong= GruposBack.find({usuarios:Meteor.user.userId}, { sort: { createdAt: -1 } }).fetch()
+        for (group in groupsIbelong){
+
+                var resp=[];
+                resp.push(Tareas.find({
+                    $and:[{delayed},{groupId:group}]
+                }))
+                resp.push(Tareas.find({groupId:group }));
+
+        }
+        return resp;
+
+    });
+  }*/
   },
   "tareas.marcarPorcentaje": (taskId, porcent) => {
+    console.log(taskId, porc);
     Tareas.update({ _id: taskId }, { $set: { porcentageDone: porcent } });
   }
 });

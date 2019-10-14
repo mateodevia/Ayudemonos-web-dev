@@ -29,11 +29,27 @@ class App extends Component {
             selectedGroup={this.props.grupos[this.state.selected]}
             usuarios={this.props.usuarios}
           />
-          <AyudaList tareasAyuda="" />
+          <AyudaList
+            tareasAyuda={this.props.tareasAyuda.filter(tarea => {
+              return (
+                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
+                tarea.delayed
+              );
+            })}
+          />
           <MisTareas
             tareasPropias={this.props.tareasPropias.filter(tarea => {
+              let encontro = false;
+              for (let i = 0; i < tarea.currentOwners.length; i++) {
+                if (Meteor.user() != null) {
+                  if (tarea.currentOwners[i] === Meteor.user().username) {
+                    encontro = true;
+                  }
+                }
+              }
               return (
-                tarea.grupoId === this.props.grupos[this.state.selected]._id
+                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
+                encontro
               );
             })}
           />
@@ -113,7 +129,6 @@ class App extends Component {
 export default withTracker(() => {
   Meteor.subscribe("tareas");
   Meteor.subscribe("grupos");
-  Meteor.subscribe("tareasPropias");
 
   Meteor.subscribe("users");
   return {
@@ -121,8 +136,7 @@ export default withTracker(() => {
     usuarios: Meteor.users.find({}).fetch(),
     // TODO: hacer que solo salgan los grupos del current user
     grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
-    // TODO: fltrar estas dos listas
-    tareasPropias: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
-    tareasAyuda: Tareas.find({}, { sort: { createdAt: -1 } }).fetch()
+    tareasAyuda: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
+    tareasPropias: Tareas.find({}, { sort: { createdAt: -1 } }).fetch()
   };
 })(App);
