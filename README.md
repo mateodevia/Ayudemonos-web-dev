@@ -74,7 +74,8 @@ https://docs.google.com/presentation/d/1FCj0bL5pGtBVA1nlT-IolltvebHxxvrXkpUlRvJn
 
 **Autores** 
 
- * [__Leonel Francisco Naranjo Forero __](https://github.com/lfnaranjo11)
+ Leonel Francisco Naranjo Forero
+ * [__Leonel Francisco Naranjo Forero__](https://github.com/lfnaranjo11)
 
 
   Mateo Devia Vega
