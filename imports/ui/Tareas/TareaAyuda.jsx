@@ -25,7 +25,7 @@ class TareaAyuda extends Component {
             className="boton"
             type="button"
             data-toggle="collapse"
-            data-target={"#collapseExample" + this.props.tarea.id}
+            data-target={"#collapseExample" + this.props.tarea._id}
             aria-expanded="false"
             aria-controls="collapseExample"
           >
@@ -33,7 +33,7 @@ class TareaAyuda extends Component {
           </button>
           <div
             className="collapse"
-            id={"collapseExample" + this.props.tarea.id}
+            id={"collapseExample" + this.props.tarea._id}
           >
             <h6>Descripción</h6>
             <p className="card-text">{this.props.tarea.descripcion}</p>
@@ -50,11 +50,8 @@ class TareaAyuda extends Component {
               ref={prog => (this.prog = prog)}
             />
             <div className="botonesAceptarColaborar">
-              <button className="boton m-1" onClick={() => this.aceptarTarea}>
+              <button className="boton m-1" onClick={() => this.aceptarTarea()}>
                 Aceptar Tarea
-              </button>
-              <button className="boton m-2" onClick={() => this.colaborar}>
-                Colaborar
               </button>
             </div>
           </div>
@@ -64,10 +61,7 @@ class TareaAyuda extends Component {
   }
 
   aceptarTarea() {
-    //Meteor call
-  }
-  colaborar() {
-    //Meteor call
+    Meteor.call("tareas.tomar", this.props.tarea._id);
   }
 }
 

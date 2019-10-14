@@ -31,7 +31,9 @@ function ModalAgregarTarea(props) {
       nombre,
       descripcion,
       props.selectedGroup._id,
-      date,
+      dia,
+      mes,
+      año,
       usuarios
     );
     props.onHide();
