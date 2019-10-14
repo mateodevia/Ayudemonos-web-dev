@@ -2,18 +2,20 @@
 https://ayudemonos-app.herokuapp.com
 
 
+ ![image](https://drive.google.com/uc?export=view&id=1pmI4H10KDy26JK6r5z_nqMA8O6H8W8d1)
+ 
+ 
 # Ayudemonos
-A public page for team work
+A public collaborative page for team work
 
 
-1) project objectives
+**project objectives**
 
+* Create a  collaborative to-do list that allows to ask for help when needed in a chore, and that also recognize when the progress in a chore is so low that it needs to be reassigned to someone more commited
 
-* Allow users to deploy locally
+* Make the access to the to-dos private so only members of a group can see it
 
-*Allow 
-
-
+* Allow users to add their friends into a group they are part of and/or have created
 
 
 **Used  technologies**
@@ -23,7 +25,6 @@ A public page for team work
 * html
 * css
 * meteor
-
 
 
 **how to deploy localy**
@@ -44,59 +45,46 @@ cd Ayudemonos-web-dev
 ```
 npm install 
 ```
-4) meteor
+4) install meteor
+
+```
+curl https://install.meteor.com/ | sh
+```
+
+5) run de file
 
 ```
 meteor
 ```
 
+6) open in the browser the project 
 
+```
+localhost:3001
+```
 
+**Useful links**
 
-**how to deploy remote**
+**remote server**
 https://ayudemonos.herokuapp.com
 
-**LINKS UTILES**
+**presentation of the project**
 
-https://docs.google.com/presentation/d/1FCj0bL5pGtBVA1nlT-IolltvebHxxvrXkpUlRvJnMdw/edit?usp=sharing
-
-https://ayudemonos.herokuapp.com
+https://docs.google.com/presentation/d/1FCj0bL5pGtBVA1nlT-IolltvebHxxvrXkpUlRvJnMdw/edit#slide=id.g60b2072c3e_0_22
 
 **Autores** 
-Leonel Francisco Naranjo Forero 
-github.com/lfnaranjo11
 
-Mateo Devia Vega
-
-github.com/mateodevia
-
-**presentacion**
- 
- https://docs.google.com/presentation/d/1FCj0bL5pGtBVA1nlT-IolltvebHxxvrXkpUlRvJnMdw/edit?usp=sharing
-
- 
-
- **Un screenshot**
- 
-![image](https://drive.google.com/uc?export=view&id=17wg7_LenCjFosHBwS3e9Nz_DnXaTdIqv)
+ Leonel Francisco Naranjo Forero
+ * [__Leonel Francisco Naranjo Forero__](https://github.com/lfnaranjo11)
 
 
- **licencia MIT.**
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-permisos: 
-*Commercial use*
- Modification
- Distribution
- Private use
+  Mateo Devia Vega
+  * [__Mateo Devia__](https://github.com/mateodevia)
 
-*desventajas*:
-Liability
- Warranty
+  
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This repository has the standard MIT license. You can find it [here.](https://github.com/mateodevia/datosGovViewer/blob/master/LICENSE)
 
