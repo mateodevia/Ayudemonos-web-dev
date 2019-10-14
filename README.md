@@ -9,7 +9,7 @@ https://ayudemonos-app.herokuapp.com
 A public collaborative page for team work
 
 
-1) project objectives
+**project objectives**
 
 Create a  collaborative to-do list that allows to ask for help when needed in a chore, and that also recognize when the progress in a chore is so low that it needs to be reassigned to someone more commited
 
@@ -45,19 +45,19 @@ cd Ayudemonos-web-dev
 ```
 npm install 
 ```
-4)install meteor
+4) install meteor
 
 ```
 curl https://install.meteor.com/ | sh
 ```
 
-4) run de file
+5) run de file
 
 ```
 meteor
 ```
 
-5)open in the browser the project 
+6)open in the browser the project 
 
 ```
 localhost:3001
