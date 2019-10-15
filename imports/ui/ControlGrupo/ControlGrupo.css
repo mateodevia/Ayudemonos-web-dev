@@ -3,11 +3,12 @@
   color: #323433;
   font-size: 16px;
   border: 1px solid lightgray;
-  outline: none;
   cursor: pointer;
   padding: 8px 12px;
-  outline: none !important;
   margin: 15px;
   margin-bottom: 0px;
   font-family: "Maven Pro", sans-serif;
+}
+.botonControl:focus {
+  outline: 3px solid #ff5924;
 }

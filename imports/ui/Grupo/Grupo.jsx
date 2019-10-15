@@ -10,15 +10,23 @@ class Grupo extends Component {
   render() {
     if (this.props.grupo === this.props.selected) {
       return (
-        <li>
-          <h4 className="tituloGrupoSelected">{this.props.grupo.nombre}</h4>
+        <li tabIndex="0">
+          <h4 className="tituloGrupoSelected" tabIndex="-1">
+            {this.props.grupo.nombre}
+          </h4>
         </li>
       );
     } else {
       return (
         // eslint-disable-next-line react/prop-types
-        <li onClick={() => this.props.handleSelected(this.props.grupo)}>
-          <h4 className="tituloGrupo">{this.props.grupo.nombre}</h4>
+        <li
+          onKeyPress={() => this.props.handleSelected(this.props.grupo)}
+          onClick={() => this.props.handleSelected(this.props.grupo)}
+          tabIndex="0"
+        >
+          <h4 className="tituloGrupo" tabIndex="-1">
+            {this.props.grupo.nombre}
+          </h4>
         </li>
       );
     }

@@ -15,7 +15,7 @@
 
 .agregarGrupo {
   background-color: #323433;
-  color: #45dcb8;
+  color: #44dbb8;
   padding: 15px;
   margin: 0;
   border: 0;
@@ -26,6 +26,9 @@
 
 .agregarGrupo::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #45dcb8;
+  color: #44dbb8;
   opacity: 1; /* Firefox */
+}
+.labelEscondido {
+  margin-left: 15px;
 }

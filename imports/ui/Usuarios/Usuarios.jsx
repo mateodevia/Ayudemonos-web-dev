@@ -17,9 +17,9 @@ class Usuarios extends Component {
             <div key={i} className="formaUsuario">
               <img
                 src="https://res.cloudinary.com/drfggfn8f/image/upload/v1571033128/gzvtcofjoxg4jrwg8kbt.svg"
-                className="iconoUsuario"
+                className="iconoUsuario" alt="icono de usuario"
               />
-              <h6 className="nombre">{usuario}</h6>
+              <label className="nombre">{usuario}</label>
             </div>
           );
         })}

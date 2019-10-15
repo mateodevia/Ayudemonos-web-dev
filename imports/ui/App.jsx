@@ -17,7 +17,8 @@ class App extends Component {
     super(props);
     this.state = {
       menuOpen: false,
-      selected: -1
+      selected: -1,
+      modalEncendido: false
     };
   }
   /**
@@ -40,35 +41,40 @@ class App extends Component {
     if (this.props.currentUser && this.state.selected !== -1) {
       contenido = (
         <React.Fragment>
-          <ControlGrupo
-            selectedGroup={this.props.grupos[this.state.selected]}
-            usuarios={this.props.usuarios}
-          />
-          <AyudaList
-            tareasAyuda={this.props.tareasAyuda.filter(tarea => {
-              return (
-                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
-                tarea.delayed
-              );
-            })}
-          />
-          <MisTareas
-            tareasPropias={this.props.tareasPropias.filter(tarea => {
-              let encontro = false;
-              for (let i = 0; i < tarea.currentOwners.length; i++) {
-                if (Meteor.user() != null) {
-                  if (tarea.currentOwners[i] === Meteor.user().username) {
-                    encontro = true;
+          <div banner="main">
+            <ControlGrupo
+              selectedGroup={this.props.grupos[this.state.selected]}
+              usuarios={this.props.usuarios}
+              modalEncendido={this.state.modalEncendido}
+              handlerModal={this.handlerModal.bind(this)}
+            />
+            <AyudaList
+              tareasAyuda={this.props.tareasAyuda.filter(tarea => {
+                return (
+                  tarea.grupoId ===
+                    this.props.grupos[this.state.selected]._id && tarea.delayed
+                );
+              })}
+            />
+            <MisTareas
+              tareasPropias={this.props.tareasPropias.filter(tarea => {
+                let encontro = false;
+                for (let i = 0; i < tarea.currentOwners.length; i++) {
+                  if (Meteor.user() != null) {
+                    if (tarea.currentOwners[i] === Meteor.user().username) {
+                      encontro = true;
+                    }
                   }
                 }
-              }
-              return (
-                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
-                encontro &&
-                !tarea.delayed
-              );
-            })}
-          />
+                return (
+                  tarea.grupoId ===
+                    this.props.grupos[this.state.selected]._id &&
+                  encontro &&
+                  !tarea.delayed
+                );
+              })}
+            />
+          </div>
         </React.Fragment>
       );
     } else if (this.props.currentUser && this.state.selected === -1) {
@@ -106,6 +112,8 @@ class App extends Component {
                 <div className="col-5 col-sm-3 col-md-3 noPadding">
                   <GruposEscondido
                     selected={this.props.grupos[this.state.selected]}
+                    modalEncendido={this.state.modalEncendido}
+                    handlerModal={this.handlerModal.bind(this)}
                     grupos={this.props.grupos.filter(grupo => {
                       let encontrado = false;
                       for (let i = 0; i < grupo.usuarios.length; i++) {
@@ -119,7 +127,10 @@ class App extends Component {
                   />
                 </div>
                 <div className="col-7 col-sm-9 col-md-9 noPadding">
-                  <NavBar hamburgerClick={this.hamburgerClick} />
+                  <NavBar
+                    hamburgerClick={this.hamburgerClick.bind(this)}
+                    modalEncendido={this.state.modalEncendido}
+                  />
                   {contenido}
                 </div>
               </React.Fragment>
@@ -129,6 +140,8 @@ class App extends Component {
                 <div className="col-0 col-sm-3 col-md-3 navBarGrupos noPadding">
                   <Grupos
                     user={this.props.currentUser}
+                    modalEncendido={this.state.modalEncendido}
+                    handlerModal={this.handlerModal.bind(this)}
                     selected={this.props.grupos[this.state.selected]}
                     grupos={this.props.grupos.filter(grupo => {
                       let encontrado = false;
@@ -143,7 +156,10 @@ class App extends Component {
                   />
                 </div>
                 <div className="col-12 col-sm-9 col-md-9 noPadding">
-                  <NavBar hamburgerClick={this.hamburgerClick.bind(this)} />
+                  <NavBar
+                    hamburgerClick={this.hamburgerClick.bind(this)}
+                    modalEncendido={this.state.modalEncendido}
+                  />
                   {contenido}
                 </div>
               </React.Fragment>
@@ -160,6 +176,9 @@ class App extends Component {
   handleSelected(grupo) {
     let newSelected = this.props.grupos.findIndex(x => x._id === grupo._id);
     this.setState({ selected: newSelected });
+  }
+  handlerModal() {
+    this.setState({ modalEncendido: !this.state.modalEncendido });
   }
 }
 App.propTypes = {

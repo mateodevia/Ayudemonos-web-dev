@@ -7,17 +7,17 @@
 }
 
 .boton {
-  background-color: #45dcb8;
+  background-color: #44dbb8;
   color: #323433;
   font-size: 18px;
-  border: 1px solid #45dcb8;
-  outline: none;
+  border: 1px solid #44dbb8;
   cursor: pointer;
   padding: 8px 12px;
-  outline: none !important;
   font-family: "Maven Pro", sans-serif;
 }
-
+.boton:focus {
+  outline: 3px solid #ff5924;
+}
 .bienvenido {
   color: #ff5924;
   font-size: 45px;
@@ -38,7 +38,7 @@ body {
 }
 
 :focus {
-  outline: 3px solid lightcoral;
+  outline: 3px solid #ff5924;
 }
 
 h1 {
