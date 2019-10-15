@@ -189,6 +189,9 @@ App.propTypes = {
   tareasPropias: PropTypes.array
 };
 export default withTracker(() => {
+  
+  //La aplicacion Client-side tiene acceso a la informacion de todas las tareas, todos los grupos y
+  // todos los usuarios. Esto podria convertirse en un fallo de privacidad y seguridad.
   Meteor.subscribe("tareas");
   Meteor.subscribe("grupos");
 
