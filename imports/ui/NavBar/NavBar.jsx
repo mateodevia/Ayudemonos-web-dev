@@ -14,7 +14,7 @@ class NavBar extends Component {
           <button
             className="hamburger"
             tabIndex="-1"
-            monClick={this.handleClick}
+            onClick={this.handleClick}
           >
             ☰
           </button>

@@ -16,6 +16,12 @@ export default class AccountsUIWrapper extends Component {
   simulateClick() {
     if (Meteor.user()) {
       console.log(this.span.childNodes[0].childNodes[4].childNodes[1].click());
+      setTimeout(2000);
+      console.log(
+        this.span.childNodes[0].childNodes[4].children[1].children[0]
+      );
+
+      // console.log(this.span.childNodes[0].childNodes[4].childNodes[1].focus());
 
       // console.log(this.span.childNodes[0].childNodes);
       //console.log(this.span.childNodes[0]);
