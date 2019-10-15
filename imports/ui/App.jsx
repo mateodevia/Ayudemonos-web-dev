@@ -13,14 +13,14 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            menuOpen: false,
-            selected: -1
-        };
-    }
-    /**
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuOpen: false,
+      selected: -1
+    };
+  }
+  /**
   componentDidMount() {
     for (i in this.props.tareasAyuda) {
       let tarea = this.props.tareasAyuda;
@@ -34,148 +34,152 @@ class App extends Component {
     }
   }*/
 
-    render() {
-        let contenido = null;
+  render() {
+    let contenido = null;
 
-        if (this.props.currentUser && this.state.selected !== -1) {
-            contenido = (
-                <React.Fragment>
-                    <ControlGrupo
-                        selectedGroup={this.props.grupos[this.state.selected]}
-                        usuarios={this.props.usuarios}
-                    />
-                    <AyudaList
-                        tareasAyuda={this.props.tareasAyuda.filter(tarea => {
-                            return (
-                                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
+    if (this.props.currentUser && this.state.selected !== -1) {
+      contenido = (
+        <React.Fragment>
+          <ControlGrupo
+            selectedGroup={this.props.grupos[this.state.selected]}
+            usuarios={this.props.usuarios}
+          />
+          <AyudaList
+            tareasAyuda={this.props.tareasAyuda.filter(tarea => {
+              return (
+                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
                 tarea.delayed
-                            );
-                        })}
-                    />
-                    <MisTareas
-                        tareasPropias={this.props.tareasPropias.filter(tarea => {
-                            let encontro = false;
-                            for (let i = 0; i < tarea.currentOwners.length; i++) {
-                                if (Meteor.user() != null) {
-                                    if (tarea.currentOwners[i] === Meteor.user().username) {
-                                        encontro = true;
-                                    }
-                                }
-                            }
-                            return (
-                                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
+              );
+            })}
+          />
+          <MisTareas
+            tareasPropias={this.props.tareasPropias.filter(tarea => {
+              let encontro = false;
+              for (let i = 0; i < tarea.currentOwners.length; i++) {
+                if (Meteor.user() != null) {
+                  if (tarea.currentOwners[i] === Meteor.user().username) {
+                    encontro = true;
+                  }
+                }
+              }
+              return (
+                tarea.grupoId === this.props.grupos[this.state.selected]._id &&
                 encontro &&
                 !tarea.delayed
-                            );
-                        })}
-                    />
-                </React.Fragment>
-            );
-        } else if (this.props.currentUser && this.state.selected === -1) {
-            contenido = (
-                <React.Fragment>
-                    <div className="mensaje">
-                        <h2 className="bienvenido">
+              );
+            })}
+          />
+        </React.Fragment>
+      );
+    } else if (this.props.currentUser && this.state.selected === -1) {
+      contenido = (
+        <React.Fragment>
+          <div className="mensaje">
+            <h2 className="bienvenido">
               ¡Bienvenido {this.props.currentUser.username}!
-                        </h2>
-                        <h3>Escoge o crea un grupo para empezar a ayudar</h3>
-                    </div>
-                </React.Fragment>
-            );
-        } else if (!this.props.currentUser) {
-            contenido = (
-                <React.Fragment>
-                    <div className="mensaje">
-                        <h2 className="bienvenido">¡Bienvenido!</h2>
-                        <h3>Por favor inicia sesion para empezar a ayudar</h3>
-                    </div>
-                </React.Fragment>
-            );
-        }
+            </h2>
+            <h3 className="mensajeBienvenida">
+              Escoge o crea un grupo para empezar a ayudar
+            </h3>
+          </div>
+        </React.Fragment>
+      );
+    } else if (!this.props.currentUser) {
+      contenido = (
+        <React.Fragment>
+          <div className="mensaje">
+            <h2 className="bienvenido">¡Bienvenido!</h2>
+            <h3 className="mensajeBienvenida">
+              Por favor inicia sesion para empezar a ayudar
+            </h3>
+          </div>
+        </React.Fragment>
+      );
+    }
 
-        return (
-            <React.Fragment>
-                <div className="container-fluid">
-                    <div className="row">
-                        {this.state.menuOpen && (
-                            <React.Fragment>
-                                <div className="col-5 col-sm-3 col-md-3 noPadding">
-                                    <GruposEscondido
-                                        selected={this.props.grupos[this.state.selected]}
-                                        grupos={this.props.grupos.filter(grupo => {
-                                            let encontrado = false;
-                                            for (let i = 0; i < grupo.usuarios.length; i++) {
-                                                if (grupo.usuarios[i] === Meteor.user().username) {
-                                                    encontrado = true;
-                                                }
-                                            }
-                                            return encontrado;
-                                        })}
-                                        handleSelected={this.handleSelected}
-                                    />
-                                </div>
-                                <div className="col-7 col-sm-9 col-md-9 noPadding">
-                                    <NavBar hamburgerClick={this.hamburgerClick} />
-                                    {contenido}
-                                </div>
-                            </React.Fragment>
-                        )}
-                        {!this.state.menuOpen && (
-                            <React.Fragment>
-                                <div className="col-0 col-sm-3 col-md-3 navBarGrupos noPadding">
-                                    <Grupos
-                                        user={this.props.currentUser}
-                                        selected={this.props.grupos[this.state.selected]}
-                                        grupos={this.props.grupos.filter(grupo => {
-                                            let encontrado = false;
-                                            for (let i = 0; i < grupo.usuarios.length; i++) {
-                                                if (grupo.usuarios[i] === Meteor.user().username) {
-                                                    encontrado = true;
-                                                }
-                                            }
-                                            return encontrado;
-                                        })}
-                                        handleSelected={this.handleSelected.bind(this)}
-                                    />
-                                </div>
-                                <div className="col-12 col-sm-9 col-md-9 noPadding">
-                                    <NavBar hamburgerClick={this.hamburgerClick.bind(this)} />
-                                    {contenido}
-                                </div>
-                            </React.Fragment>
-                        )}
-                    </div>
+    return (
+      <React.Fragment>
+        <div className="container-fluid">
+          <div className="row">
+            {this.state.menuOpen && (
+              <React.Fragment>
+                <div className="col-5 col-sm-3 col-md-3 noPadding">
+                  <GruposEscondido
+                    selected={this.props.grupos[this.state.selected]}
+                    grupos={this.props.grupos.filter(grupo => {
+                      let encontrado = false;
+                      for (let i = 0; i < grupo.usuarios.length; i++) {
+                        if (grupo.usuarios[i] === Meteor.user().username) {
+                          encontrado = true;
+                        }
+                      }
+                      return encontrado;
+                    })}
+                    handleSelected={this.handleSelected}
+                  />
                 </div>
-            </React.Fragment>
-        );
-    }
+                <div className="col-7 col-sm-9 col-md-9 noPadding">
+                  <NavBar hamburgerClick={this.hamburgerClick} />
+                  {contenido}
+                </div>
+              </React.Fragment>
+            )}
+            {!this.state.menuOpen && (
+              <React.Fragment>
+                <div className="col-0 col-sm-3 col-md-3 navBarGrupos noPadding">
+                  <Grupos
+                    user={this.props.currentUser}
+                    selected={this.props.grupos[this.state.selected]}
+                    grupos={this.props.grupos.filter(grupo => {
+                      let encontrado = false;
+                      for (let i = 0; i < grupo.usuarios.length; i++) {
+                        if (grupo.usuarios[i] === Meteor.user().username) {
+                          encontrado = true;
+                        }
+                      }
+                      return encontrado;
+                    })}
+                    handleSelected={this.handleSelected.bind(this)}
+                  />
+                </div>
+                <div className="col-12 col-sm-9 col-md-9 noPadding">
+                  <NavBar hamburgerClick={this.hamburgerClick.bind(this)} />
+                  {contenido}
+                </div>
+              </React.Fragment>
+            )}
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
 
-    hamburgerClick() {
-        this.setState({ menuOpen: !this.state.menuOpen });
-    }
-    handleSelected(grupo) {
-        let newSelected = this.props.grupos.findIndex(x => x._id === grupo._id);
-        this.setState({ selected: newSelected });
-    }
+  hamburgerClick() {
+    this.setState({ menuOpen: !this.state.menuOpen });
+  }
+  handleSelected(grupo) {
+    let newSelected = this.props.grupos.findIndex(x => x._id === grupo._id);
+    this.setState({ selected: newSelected });
+  }
 }
 App.propTypes = {
-    currentUser: PropTypes.object,
-    usuarios: PropTypes.array,
-    grupos: PropTypes.array,
-    tareasAyuda: PropTypes.array,
-    tareasPropias: PropTypes.array
+  currentUser: PropTypes.object,
+  usuarios: PropTypes.array,
+  grupos: PropTypes.array,
+  tareasAyuda: PropTypes.array,
+  tareasPropias: PropTypes.array
 };
 export default withTracker(() => {
-    Meteor.subscribe("tareas");
-    Meteor.subscribe("grupos");
+  Meteor.subscribe("tareas");
+  Meteor.subscribe("grupos");
 
-    Meteor.subscribe("users");
-    return {
-        currentUser: Meteor.user(),
-        usuarios: Meteor.users.find({}).fetch(),
-        // TODO: hacer que solo salgan los grupos del current user
-        grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
-        tareasAyuda: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
-        tareasPropias: Tareas.find({}, { sort: { createdAt: -1 } }).fetch()
-    };
+  Meteor.subscribe("users");
+  return {
+    currentUser: Meteor.user(),
+    usuarios: Meteor.users.find({}).fetch(),
+    // TODO: hacer que solo salgan los grupos del current user
+    grupos: GruposBack.find({}, { sort: { createdAt: -1 } }).fetch(),
+    tareasAyuda: Tareas.find({}, { sort: { createdAt: -1 } }).fetch(),
+    tareasPropias: Tareas.find({}, { sort: { createdAt: -1 } }).fetch()
+  };
 })(App);
