@@ -46,7 +46,6 @@ class TareaPropia extends Component {
             data-toggle="collapse"
             data-target={"#collapseExample" + this.props.tarea._id}
             aria-expanded="false"
-            aria-controls="collapseExample"
           >
             Mas Información
           </button>
