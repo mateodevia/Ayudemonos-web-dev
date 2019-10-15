@@ -33,7 +33,7 @@ git clone https://github.com/mateodevia/Ayudemonos-web-dev.git
 ```
 
 
-2) entrar al directorio
+2) step into de directory
 ```
 cd Ayudemonos-web-dev
 ```
@@ -64,7 +64,7 @@ localhost:3001
 **Useful links**
 
 **remote server**
-https://ayudemonos.herokuapp.com
+https://ayudemonos-app.herokuapp.com/
 
 **presentation of the project**
 
