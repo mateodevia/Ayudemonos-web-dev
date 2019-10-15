@@ -20,8 +20,6 @@ A public collaborative page for team work
 
 **Used  technologies**
 * react
-* express
-* axios
 * html
 * css
 * meteor
